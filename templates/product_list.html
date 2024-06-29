@@ -1,0 +1,249 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <!-- Basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Mobile metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Site metas -->
+    <title>Dandi - Nos Catégories</title>
+    <meta name="keywords" content="poudre, piment, Mali, transformation alimentaire">
+    <meta name="description" content="Dandi, entreprise basée au Mali, spécialisée dans la transformation de piment en diverses sauces.">
+    <meta name="author" content="Dandi">
+    <!-- Bootstrap CSS -->
+        <link rel="shortcut icon" href="{% static 'images/logo.png' %}" type="image/x-icon" />
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <!-- Style CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+    <!-- Custom CSS -->
+    <link id="changeable-colors" rel="stylesheet" href="{% static 'css/colors/orange.css' %}">
+    <!-- Modernizer -->
+    <script src="{% static 'js/modernizer.js' %}"></script>
+    <style>
+        .category-box {
+            border: 2px solid rgba(53, 129, 53, 0.9); /* Feu comme le piment */
+            border-radius: 15px;
+            padding: 20px;
+            margin: 100px 0;
+            text-align: center;
+            background-color: #f9f9f9;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .category-box:hover {
+            background-color: #ffe4e1;
+            transform: scale(1.05);
+        }
+        .category-box h3 {
+            margin-bottom: 15px;
+            font-size: 24px;
+            color: #ff0015; /* Couleur feu */
+        }
+        .category-box p {
+            margin-bottom: 10px;
+            font-size: 16px;
+            color: #333;
+        }
+        .category-box img {
+            width: 100%;
+            max-height: 200px;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+        .category-box a.btn {
+            margin-top: 10px;
+            background-color: rgba(14, 113, 14, 0.9);
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .category-box a.btn:hover {
+            background-color: rgba(14, 113, 14, 0.9);
+        }
+    </style>
+</head>
+<body class="main-layout inner_page">
+    <!-- Header -->
+    <header id="header" class="header-block-top">
+        <div class="container">
+            <div class="row">
+                <div class="main-menu">
+                    <!-- navbar -->
+                    <nav class="navbar navbar-default" id="mainNav">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <div class="logo">
+                                <a class="navbar-brand js-scroll-trigger logo-header" href="{% url 'home' %}">
+                                    <img src="{% static 'images/logo.png' %}" alt="">
+                                </a>
+                            </div>
+                        </div>
+                        <div id="navbar" class="navbar-collapse collapse">
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a href="{% url 'home' %}">Accueil</a></li>
+                                <li class="active"><a href="{% url 'product_list' %}">Nos Produits</a></li>
+                                <li><a href="{% url 'view_cart' %}">Panier</a></li>
+                            </ul>
+                        </div>
+                        <!-- end nav-collapse -->
+                    </nav>
+                    <!-- end navbar -->
+                </div>
+            </div>
+            <!-- end row -->
+        </div>
+        <!-- end container -->
+    </header>
+    <!-- End Header -->
+    <!-- Main content -->
+    <div id="categories" class="categories-main pad-top-100 pad-bottom-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.1s">
+                        <br>
+
+                        <h2 class="block-title text-center">Nos Catégories de Produits</h2>
+                        <h3 class=" text-center">Découvrez nos différentes catégories de produits dérivés du piment.</h3>
+                        <br>
+
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="row">
+                        {% for category in categories %}
+                        <div class="col-md-4">
+                            <div class="category-box">
+                                <h3>{{ category.name }}</h3>
+                                {% if category.image %}
+                                <img src="{{ category.image.url }}" alt="{{ category.name }}">
+                                {% endif %}
+                                <p>{{ category.description }}</p>
+                                <a href="{% url 'products_by_category' category.id %}" class="btn">Voir les Produits</a>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Main content -->
+    <!-- Footer -->
+    <div id="footer" class="footer-main">
+        <div class="footer-box pad-top-70">
+            <div class="container">
+                <div class="row">
+                    <div class="footer-in-main">
+
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                            <div class="footer-box-a">
+                                <h3>À propos</h3>
+                                <p>Dandi, entreprise basée au Mali, spécialisée dans la transformation de piment en diverses poudre.</p>
+                                <ul class="socials-box footer-socials pull-left">
+                                    <li>
+                                        <a href="#">
+                                            <div class="social-circle-border"><i class="fa fa-facebook"></i></div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <div class="social-circle-border"><i class="fa fa-instagram"></i></div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- end footer-box-a -->
+                        </div>
+                        <!-- end col -->
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                            <div class="footer-box-b">
+                                <h3>Adresse</h3>
+                                <ul>
+                                    <li>BP: Mountougoula<br>Mali</li>
+                                    <li>77 07 43 18<br>85 35 35 75</li>
+                                    <li><a href="mailto:dandiml@gmail.com">dandiml@gmail.com</a></li>
+                                </ul>
+                            </div>
+                            <!-- end footer-box-b -->
+                        </div>
+                        <!-- end col -->
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                            <div class="footer-box-c">
+                                <h3>Contacts</h3>
+                                <p>
+                                    <i class="fa fa-map-signs" aria-hidden="true"></i>
+                                    <span>Mountougoula Mali</span>
+                                </p>
+                                <p>
+                                    <i class="fa fa-mobile" aria-hidden="true"></i>
+                                    <span>
+                                    +223 77074318
+                                </span>
+                                </p>
+                                <p>
+                                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                                    <span><a href="mailto:contact@dandiml.com">contact@dandiml.com</a></span>
+                                </p>
+                            </div>
+                            <!-- end footer-box-c -->
+                        </div>
+                        <!-- end col -->
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                            <div class="footer-box-d">
+                                <h3>Heures d'ouverture</h3>
+                                <ul>
+                                    <li>
+                                        <p>Lundi - Jeudi </p>
+                                        <span> 11:00 AM - 9:00 PM</span>
+                                    </li>
+                                    <li>
+                                        <p>Vendredi - Samedi </p>
+                                        <span> 11:00 AM - 5:00 PM</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- end footer-box-d -->
+                        </div>
+                        <!-- end col -->
+                    </div>
+                    <!-- end footer-in-main -->
+                </div>
+                <!-- end row -->
+            </div>
+            <!-- end container -->
+            <div id="copyright" class="copyright-main">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <h6 class="copy-title">Copyright &copy; dandi 2024</h6>
+                        </div>
+                    </div>
+                    <!-- end row -->
+                </div>
+                <!-- end container -->
+            </div>
+            <!-- end copyright-main -->
+        </div>
+        <!-- end footer-box -->
+    </div>
+    <!-- End Footer -->
+    <!-- Javascript files-->
+    <script src="{% static 'js/all.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <!-- ALL PLUGINS -->
+    <script src="{% static 'js/custom.js' %}"></script>
+</body>
+</html>

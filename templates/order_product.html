@@ -1,0 +1,209 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <!-- Basic -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=0">
+    <link rel="shortcut icon" href="{% static 'images/logo.png' %}" type="image/x-icon" />
+    <!-- Site Metas -->
+    <title>Dandi - Commander {{ product.name }}</title>
+    <meta name="keywords" content="sauces, piment, Mali, transformation alimentaire">
+    <meta name="description" content="Commander le produit {{ product.name }} chez Dandi.">
+    <meta name="author" content="Dandi">
+
+    <!-- Site Icons -->
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="{% static 'images/apple-touch-icon.png' %}">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <!-- Site CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+    <!-- color -->
+    <link id="changeable-colors" rel="stylesheet" href="{% static 'css/colors/orange.css' %}">
+
+    <!-- Modernizer -->
+    <script src="{% static 'js/modernizer.js' %}"></script>
+
+    <style>
+        .order-form {
+            border: 2px solid #ff0015;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            background-color: #f9f9f9;
+        }
+        .order-form h3 {
+            margin-bottom: 15px;
+            font-size: 24px;
+            color: rgba(14, 113, 14, 0.9);
+        }
+        .order-form label {
+            font-size: 16px;
+            color: #333;
+        }
+        .order-form input, .order-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .order-form .total-price {
+            font-size: 20px;
+            color: #ff0015;
+            font-weight: bold;
+        }
+        .order-form button {
+            background-color: #ff0015;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .order-form button:hover {
+            background-color: rgba(14, 113, 14, 0.9);
+        }
+        .payment-methods img {
+            width: 100px;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+
+
+    <!-- Main content -->
+    <div class="container mt-5">
+
+        <div class="order-form">
+            <h1>Commander {{ product.name }}</h1>
+            <h3>Formulaire de Commande</h3>
+            <form method="post" action="{% url 'order_product' product.id %}">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="customer_name">Nom :</label>
+                    <input type="text" id="customer_name" name="customer_name" required>
+                </div>
+                <div class="form-group">
+                    <label for="quantity">Quantité :</label>
+                    <input type="number" id="quantity" name="quantity" min="1" value="1" required>
+                </div>
+                <div class="form-group">
+                    <label for="total-price">Prix unitaire :</label>
+                    <p class="total-price" id="total-price">{{ product.price }} FCFA</p>
+                </div>
+                <div class="form-group">
+                    <label for="customer_phone">Numéro de Téléphone :</label>
+                    <input type="tel" id="customer_phone" name="customer_phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="customer_address">Adresse :</label>
+                    <textarea id="customer_address" name="customer_address" rows="3" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Moyens de Paiement :</label>
+                    <div class="payment-methods">
+                        <img src="{% static 'images/payment1.png' %}" alt="Paiement 1">
+                        <img src="{% static 'images/payment2.png' %}" alt="Paiement 2">
+                        <img src="{% static 'images/payment3.png' %}" alt="Paiement 3">
+                    </div>
+                </div>
+                <button type="submit">Commander</button>
+            </form>
+        </div>
+    </div>
+    <!-- End Main content -->
+
+    <!-- Footer -->
+    <div id="footer" class="footer-main">
+        <div class="footer-box pad-top-70">
+            <div class="container">
+                <div class="row">
+                    <div class="footer-in-main">
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                            <div class="footer-box-a">
+                                <h3>À propos</h3>
+                                <p>Dandi, entreprise basée au Mali, spécialisée dans la transformation de piment en diverses sauces.</p>
+                                <ul class="socials-box footer-socials pull-left">
+                                    <li>
+                                        <a href="#">
+                                            <div class="social-circle-border"><i class="fa fa-facebook"></i></div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <div class="social-circle-border"><i class="fa fa-instagram"></i></div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                            <div class="footer-box-b">
+                                <h3>Adresse</h3>
+                                <ul>
+                                    <li>BP: Mountougoula<br>Mali</li>
+                                    <li>77 07 43 18<br>85 35 35 75</li>
+                                    <li><a href="mailto:dandiml@gmail.com">dandiml@gmail.com</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                            <div class="footer-box-c">
+                                <h3>Contacts</h3>
+                                <p>
+                                    <i class="fa fa-map-signs" aria-hidden="true"></i>
+                                    <span>Mountougoula Mali</span>
+                                </p>
+                                <p>
+                                    <i class="fa fa-mobile" aria-hidden="true"></i>
+                                    <span>
+                                    +223 77074318
+                                </span>
+                                </p>
+                                <p>
+                                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                                    <span><a href="mailto:contact@dandiml.com">contact@dandiml.com</a></span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="footer" class="footer-main">
+            <div class="footer-box pad-top-70">
+                <div id="copyright" class="copyright-main">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <h6 class="copy-title"> Copyright &copy; Dandi 2024 </h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Footer -->
+
+    <!-- ALL JS FILES -->
+    <script src="{% static 'js/all.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <!-- ALL PLUGINS -->
+    <script src="{% static 'js/custom.js' %}"></script>
+    <script>
+        document.getElementById('quantity').addEventListener('input', function() {
+            var price = {{ product.price }};
+            var quantity = this.value;
+            var totalPrice = price * quantity;
+            document.getElementById('total-price').innerText = totalPrice.toFixed(2) + ' FCFA';
+        });
+    </script>
+</body>
+</html>

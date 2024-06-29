@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Liste des Employés</title>
+</head>
+<body>
+    <h1>Liste des Employés</h1>
+    <ul>
+        {% for employe in employes %}
+        <li>{{ employe.prenom }} {{ employe.nom }} - {{ employe.departement.nom }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

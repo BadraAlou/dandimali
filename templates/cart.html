@@ -1,0 +1,179 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panier - Dandi</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">  
+    <link rel="shortcut icon" href="{% static 'images/logo.png' %}" type="image/x-icon" />
+    <style>
+        .cart-table th, .cart-table td {
+            padding: 15px;
+            text-align: center;
+        }
+        .cart-table img {
+            width: 80px;
+            height: auto;
+        }
+        .btn {
+            margin: 0 5px;
+        }
+        @media (max-width: 768px) {
+            .cart-table th, .cart-table td {
+                padding: 10px;
+            }
+            .cart-table img {
+                width: 60px;
+            }
+            .btn {
+                padding: 5px 10px;
+                font-size: 12px;
+            }
+            h3 {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Votre Panier</h1>
+        <div class="table-responsive">
+            <table class="table table-bordered cart-table">
+                <thead>
+                    <tr>
+                        <th>Produit</th>
+                        <th>Prix</th>
+                        <th>Quantité</th>
+                        <th>Total</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in cart_items %}
+                    <tr>
+                        <td>
+                            {% if item.product.image %}
+                            <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" class="img-fluid">
+                            {% endif %}
+                            <p>{{ item.product.name }}</p>
+                        </td>
+                        <td>{{ item.product.price }} FCFA</td>
+                        <td>{{ item.quantity }}</td>
+                        <td>{{ item.total_price }} FCFA</td>
+                        <td>
+                            <a href="{% url 'increase_quantity' item.id %}" class="btn btn-success">+</a>
+                            <a href="{% url 'decrease_quantity' item.id %}" class="btn btn-warning">-</a>
+                            <a href="{% url 'remove_from_cart' item.id %}" class="btn btn-danger">Retirer</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="text-right">
+            <h3>Total: {{ total_price }} FCFA</h3>
+        </div>
+        <div class="text-right mt-3">
+            <a href="{% url 'product_list' %}" class="btn btn-secondary">Retour aux Produits</a>
+            <a href="{% url 'checkout' %}" class="btn btn-primary">Passer à la caisse</a>
+        </div>
+
+        <!-- Section pour afficher les commandes précédentes -->
+        <div class="mt-5">
+            <h2>Mes Commandes</h2>
+            {% for order in previous_orders %}
+            <div class="order-details mt-4 p-4 bg-light border rounded">
+                <p>Produit: {{ order.product.name }}</p>
+                <p>Quantité: {{ order.quantity }}</p>
+                <button class="btn btn-download btn-success" onclick="generatePDF('{{ order.customer_name }}', '{{ order.product.name }}', '{{ order.quantity }}', '{{ order.product.price }}', '{{ order.total_price }}')">Télécharger la Facture</button>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
+    <script>
+    async function generatePDF(customerName, productName, quantity, unitPrice, totalPrice) {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+
+        // Couleurs de la société
+        const primaryColor = "#ff4500";
+        const secondaryColor = "#28a745";
+
+        // Ajouter un logo
+        const imgData = await getBase64ImageFromUrl('{% static "images/logo.png" %}');
+        doc.addImage(imgData, 'PNG', 15, 15, 50, 50);
+
+        // En-tête de la facture
+        doc.setFontSize(18);
+        doc.setTextColor(primaryColor);
+        doc.text('Facture commande confirmée chez Dandi', 105, 80, null, null, 'center');
+
+        // Informations de l'entreprise
+        doc.setFontSize(12);
+        doc.setTextColor(0, 0, 0);
+        doc.text('Dandi', 20, 100);
+        doc.text('Adresse: Mountougoula, Mali', 20, 110);
+        doc.text('Téléphone: +223 77074318', 20, 120);
+
+        // Informations du client
+        doc.setFontSize(13);
+        doc.text('Facturé à:', 20, 140);
+        doc.text(customerName, 20, 150);
+
+        // Date et Heure
+        doc.text('Date de commande: ' + new Date().toLocaleDateString('fr-FR') + ' ' + new Date().toLocaleTimeString('fr-FR'), 20, 160);
+
+        // Lignes pour le tableau
+        doc.setFontSize(11);
+        doc.setTextColor(primaryColor);
+        doc.text('Produit', 20, 180);
+        doc.text('Quantité', 80, 180);
+        doc.text('Prix Unitaire', 120, 180);
+        doc.text('Prix Total', 160, 180);
+
+        doc.setDrawColor(primaryColor);
+        doc.line(20, 185, 190, 185); // Ligne horizontale sous les titres
+
+        // Détails de la commande
+        doc.setFontSize(10);
+        doc.setTextColor(0, 0, 0);
+        doc.text(productName, 20, 195);
+        doc.text(quantity, 80, 195);
+        doc.text(unitPrice + ' FCFA', 120, 195);
+        doc.text(totalPrice + ' FCFA', 160, 195);
+
+        // Ajouter une bordure colorée
+        doc.setDrawColor(secondaryColor);
+        doc.setLineWidth(1.5);
+        doc.rect(10, 10, 190, 277, 'S');
+
+        // Sauvegarder le PDF
+        doc.save('Facture_Dandi.pdf');
+    }
+
+    function getBase64ImageFromUrl(url) {
+        return new Promise((resolve, reject) => {
+            const img = new Image();
+            img.setAttribute('crossOrigin', 'anonymous');
+            img.onload = () => {
+                const canvas = document.createElement('canvas');
+                canvas.width = img.width;
+                canvas.height = img.height;
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(img, 0, 0);
+                const dataURL = canvas.toDataURL('image/png');
+                resolve(dataURL);
+            };
+            img.onerror = error => reject(error);
+            img.src = url;
+        });
+    }
+    </script>
+</body>
+</html>

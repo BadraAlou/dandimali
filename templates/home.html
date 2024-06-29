@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <!-- Basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=0">
+
+    <!-- Site Metas -->
+    <title>Dandi</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    {% load static %}
+
+    <!-- Site Icons -->
+    <link rel="shortcut icon" href="{% static 'images/logo.png' %}" type="image/x-icon" />
+
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <!-- Site CSS -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+    <!-- color -->
+    <link id="changeable-colors" rel="stylesheet" href="{% static 'css/colors/orange.css' %}">
+
+    <!-- Modernizer -->
+    <script src="{% static 'js/modernizer.js' %}"></script>
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <div id="loader">
+        <div id="status"></div>
+    </div>
+    <div id="site-header">
+        <header id="header" class="header-block-top">
+            <div class="container">
+                <div class="row">
+                    <div class="main-menu">
+                        <!-- navbar -->
+                        <nav class="navbar navbar-default" id="mainNav">
+                            <div class="navbar-header">
+                                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                                    <span class="sr-only">Toggle navigation</span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+                                <div class="logo">
+                                    <a class="navbar-brand js-scroll-trigger logo-header" href="#">
+                                        <img src="{% static 'images/logo.png' %}" alt="Dandi Logo">
+                                    </a>
+                                </div>
+                            </div>
+                            <div id="navbar" class="navbar-collapse collapse">
+                                <ul class="nav navbar-nav navbar-right">
+                                    <li class="active"><a href="#banner">Accueil</a></li>
+                                    <li><a href="#about">A propos de Dandi</a></li>
+                                    <li><a href="{% url 'product_list' %}">Nos catégories</a></li>
+                                    <li><a href="#gallery">Nos méthodes</a></li>
+                                    <li><a href="#contact">Envoyer un message</a></li>
+                                    <li><a href="#footer">Contacts</a></li>
+                                </ul>
+                            </div>
+                            <!-- end nav-collapse -->
+                        </nav>
+                        <!-- end navbar -->
+                    </div>
+                </div>
+                <!-- end row -->
+            </div>
+            <!-- end container-fluid -->
+        </header>
+        <!-- end header -->
+    </div>
+    <!-- end site-header -->
+
+    <div id="banner" class="banner full-screen-mode parallax">
+        <div class="container pr">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="banner-static">
+                    <div class="banner-text">
+                        <div class="banner-cell">
+                            <h1>Bienvenue <span class="typer" id="some-id" data-delay="200" data-delim=":" data-words="Chez Dandi" data-colors="red"></span><span class="cursor" data-cursorDisplay="_" data-owner="some-id"></span></h1>
+                            <h2>La vrai ardeur du piment Malien </h2>
+                            <p>Découvrez nos produits de qualité supérieure, transformés avec soin pour satisfaire vos papilles.</p>
+                            <div class="book-btn">
+                                <a href="#menu" class="table-btn hvr-underline-from-center">Voir nos produits</a>
+                            </div>
+                            <a href="#about">
+                                <div class="mouse"></div>
+                            </a>
+                        </div>
+                        <!-- end banner-cell -->
+                    </div>
+                    <!-- end banner-text -->
+                </div>
+                <!-- end banner-static -->
+            </div>
+            <!-- end col -->
+        </div>
+        <!-- end container -->
+    </div>
+    <!-- end banner -->
+
+    <div id="about" class="about-main pad-top-100 pad-bottom-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <div class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.1s">
+                        <h2 class="block-title"> A propos de Dandi </h2>
+                        <h3>PIQUANT, DELICIEUX, du DANDI simplement ...</h3>
+                        <p>Dandi est une entreprise malienne spécialisée dans la transformation du piment en poudre et en huile de piment. Nous nous engageons à fournir des produits de haute qualité, respectant les normes les plus strictes de sécurité alimentaire.</p>
+
+                        <p>Notre piment en poudre et notre huile de piment sont préparés avec des piments soigneusement sélectionnés, offrant ainsi une saveur authentique et intense qui rehaussera vos plats.</p>
+
+                        <p>Nous croyons en l'importance de l'innovation et de la durabilité dans nos processus de production, assurant ainsi des produits savoureux et sains pour nos clients.</p>
+                    </div>
+                </div>
+                <!-- end col -->
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <div class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.1s">
+                        <div class="about-images">
+                            <img class="about-main" src="{% static 'images/pim7.jpg' %}" alt="About Main Image">
+                            <img class="about-inset" src="{% static 'images/piment2.jpg' %}" alt="About Inset Image">
+                        </div>
+                    </div>
+                </div>
+                <!-- end col -->
+            </div>
+            <!-- end row -->
+        </div>
+        <!-- end container -->
+    </div>
+
+    <div class="special-menu pad-top-100 parallax">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.1s">
+                        <h2 class="block-title color-white text-center"> Pourquoi choisir Dandi ?</h2>
+                        <h5 class="title-caption text-center"> Nos produits de piment sont transformés avec le plus grand soin pour garantir une qualité supérieure et une saveur inégalée.</h5>
+                    </div>
+                    <div class="special-box">
+                        <div id="owl-demo">
+                            <div class="item item-type-zoom">
+                                <a href="#" class="item-hover">
+                                    <div class="item-info">
+                                        <div class="headline">
+                                            Piment en poudre
+                                            <div class="line"></div>
+                                            <div class="dit-line">Notre piment en poudre est idéal pour épicer vos plats avec une saveur riche et intense.</div>
+                                        </div>
+                                    </div>
+                                </a>
+                                <div class="item-img">
+                                    <img src="{% static 'images/piment2.jpg' %}" alt="Piment en poudre">
+                                </div>
+                            </div>
+                            <div class="item item-type-zoom">
+                                <a href="#" class="item-hover">
+                                    <div class="item-info">
+                                        <div class="headline">
+                                            Huile de piment
+                                            <div class="line"></div>
+                                            <div class="dit-line">Notre huile de piment ajoute une touche piquante et savoureuse à tous vos plats.</div>
+                                        </div>
+                                    </div>
+                                </a>
+                                <div class="item-img">
+                                    <img src="{% static 'images/piment3.jpg' %}" alt="Huile de piment">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end special-box -->
+                </div>
+                <!-- end col -->
+            </div>
+            <!-- end row -->
+        </div>
+        <!-- end container -->
+    </div>
+    <!-- end special-menu -->
+
+    <div id="menu" class="menu-main pad-top-100 pad-bottom-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.1s">
+                        <h2 class="block-title text-center">Nos catégories</h2>
+                        <p class="title-caption text-center">Découvrez nos différentes catégories de produits dérivés du piment dans la section NOS CATEGORIES.</p>
+                    </div>
+                    
+                    <!-- end tab-menu -->
+                </div>
+                <!-- end col -->
+            </div>
+            <!-- end row -->
+        </div>
+        <!-- end container -->
+    </div>
+    <!-- end menu -->
+
+    <div id="gallery" class="gallery-main pad-top-100 pad-bottom-100">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.1s">
+                        <h2 class="block-title text-center">Notre galerie</h2>
+                        <p class="title-caption text-center">Découvrez notre processus de transformation du piment en images.</p>
+                    </div>
+                    <div class="gal-container clearfix">
+                        <div class="col-md-8 col-sm-12 co-xs-12 gal-item">
+                            <div class="box">
+                                <a href="#" data-toggle="modal" data-target="#1">
+                                    <img src="{% static 'images/pim7.jpg' %}" alt="Gallery Image 1">
+                                </a>
+                                <div class="modal fade" id="1" tabindex="-1" role="dialog">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                            <div class="modal-body">
+                                                <img src="{% static 'images/pim7.jpg' %}" alt="Gallery Image 1">
+                                            </div>
+                                            <div class="col-md-12 description">
+                                                <h4>Transformation du piment</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- repeat similar blocks for other gallery items -->
+                    </div>
+                    <div class="gal-container clearfix">
+                        <div class="col-md-8 col-sm-12 co-xs-12 gal-item">
+                            <div class="box">
+                                <a href="#" data-toggle="modal" data-target="#1">
+                                    <img src="{% static 'images/piment2.jpg' %}" alt="Gallery Image 1">
+                                </a>
+                                <div class="modal fade" id="1" tabindex="-1" role="dialog">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                            <div class="modal-body">
+                                                <img src="{% static 'images/piment2.jpg' %}" alt="Gallery Image 1">
+                                            </div>
+                                            <div class="col-md-12 description">
+                                                <h4>Transformation du piment</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- repeat similar blocks for other gallery items -->
+                    </div>
+                    <!-- end gal-container -->
+                </div>
+                <!-- end col -->
+            </div>
+            <!-- end row -->
+        </div>
+        <!-- end container -->
+    </div>
+    <!-- end gallery-main -->
+
+    <div id="contact" class="contact-main pad-top-100 pad-bottom-100">
+        <div class="container">
+            <div class="row">
+                <div class="form-reservations-box">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.1s">
+                            <h2 class="block-title text-center">Envoyer un message</h2>
+                        </div>
+                        <h4 class="form-title">Pour des préoccupations</h4>
+                        <p>Veuillez nous envoyer vos préoccupations, notre équipe vous contactera !</p>
+
+                        <div class="col-md-3 col-sm-6">
+                        <div class="infoma">
+                          
+                            <form class="form_subscri" method="post" action="{% url 'submit_suggestion' %}">
+                                {% csrf_token %}
+                              
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <input class="newsl form-control" placeholder="Votre Email" type="email" name="email" required>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <input class="newsl form-control" placeholder="Votre message" type="text" name="message" required>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <button class="subsci_btn btn btn-primary" type="submit">Envoyer</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+</div>
+
+
+                       
+                        <!-- end form -->
+                    </div>
+                    <!-- end col -->
+                </div>
+                <!-- end reservations-box -->
+            </div>
+            <!-- end row -->
+        </div>
+        <!-- end container -->
+    </div>
+    <!-- end contact-main -->
+   
+   <div id="footer" class="footer-main">
+        <div class="footer-box pad-top-70">
+            <div class="container">
+                <div class="row">
+                    <div class="footer-in-main">
+                        
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                            <div class="footer-box-a">
+                                <h3>À propos</h3>
+                                <p>Dandii, entreprise basée au Mali, spécialisée dans la transformation de piment en diverses sauces.</p>
+                                <ul class="socials-box footer-socials pull-left">
+                                    <li>
+                                        <a href="#">
+                                            <div class="social-circle-border"><i class="fa fa-facebook"></i></div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <div class="social-circle-border"><i class="fa fa-instagram"></i></div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- end footer-box-a -->
+                        </div>
+                        <!-- end col -->
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                            <div class="footer-box-b">
+                                <h3>Adresse</h3>
+                                <ul>
+                                    <li>BP: Mountougoula<br>Mali</li>
+                                    <li>77 07 43 18<br>85 35 35 75</li>
+                                    <li><a href="mailto:dandiml@gmail.com">dandiml@gmail.com</a></li>
+                                </ul>
+                            </div>
+                            <!-- end footer-box-b -->
+                        </div>
+                        <!-- end col -->
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                            <div class="footer-box-c">
+                                <h3>Contacts</h3>
+                                <p>
+                                    <i class="fa fa-map-signs" aria-hidden="true"></i>
+                                    <span>Mountougoula , Mali</span>
+                                </p>
+                                <p>
+                                    <i class="fa fa-mobile" aria-hidden="true"></i>
+                                    <span>
+                                    +223 77074318
+                                </span>
+                                </p>
+                                <p>
+                                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                                    <span><a href="mailto:contact@dandiml.com">contact@dandiml.com</a></span>
+                                </p>
+                            </div>
+                            <!-- end footer-box-c -->
+                        </div>
+                        <!-- end col -->
+                        
+                        <!-- end col -->
+                    </div>
+                    <!-- end footer-in-main -->
+                </div>
+                <!-- end row -->
+            </div>
+           
+        </div>
+        <!-- end footer-box -->
+    </div>
+    <div id="footer" class="footer-main">
+        <div class="footer-box pad-top-70">
+            <!-- end container -->
+            <div id="copyright" class="copyright-main">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <h6 class="copy-title"> Copyright &copy; Dandi 2024 </h6>
+                        </div>
+                    </div>
+                    <!-- end row -->
+                </div>
+                <!-- end container -->
+            </div>
+            <!-- end copyright-main -->
+        </div>
+        <!-- end footer-box -->
+    </div>
+    <!-- end footer-main -->
+
+    <!-- ALL JS FILES -->
+    <script src="{% static 'js/all.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <!-- ALL PLUGINS -->
+    <script src="{% static 'js/custom.js' %}"></script>
+</body>
+</html>

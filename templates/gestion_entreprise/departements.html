@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Liste des Départements</title>
+</head>
+<body>
+    <h1>Liste des Départements</h1>
+    <ul>
+        {% for departement in departements %}
+        <li>{{ departement.nom }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
